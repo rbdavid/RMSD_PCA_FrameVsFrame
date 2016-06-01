@@ -49,6 +49,7 @@ nSel = len(sel_list.sel)
 for i in range(nSel):
 	selection = sel_list.sel[i][1]
 	u_sel = u.select_atoms(selection)
+	temp_nAtoms = len(u_sel.atoms)
 	makedir('%s' %(sel_list.sel[i][0]))
 	changedir('%s' %(sel_list.sel[i][0]))
 	out = open('%s.rmsd_matrix.dat' %(sel_list.sel[i][0]), 'w')
@@ -66,7 +67,7 @@ for i in range(nSel):
 			# APPLY THE ROTATION MATRIX TO THE ATOMS OF INTEREST
 			u_all.rotate(R)
 			# CALC THE RMSD VALUE BETWEEN FRAMES
-			rmsd = RMSD(u_sel.coordinates(),pos1)
+			rmsd = RMSD(u_sel.coordinates(),pos1,temp_nAtoms)
 			# PRINT THE RESULTS TO THE OUTPUT FILE
 			out.write('%d   %d    %f \n' %(j,k,rmsd))
 	out.close()
