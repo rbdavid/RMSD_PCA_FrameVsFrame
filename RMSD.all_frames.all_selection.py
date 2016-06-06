@@ -57,17 +57,17 @@ for i in range(nSel):
 	for j in range(nSteps-1):
 		u.trajectory[j]
 		u_all.translate(-u_backbone.center_of_mass())
-		pos0 = u_beta.coordinates()
-		pos1 = u_sel.coordinates()
+		pos0 = u_beta.positions
+		pos1 = u_sel.positions
 
 		for k in range(j+1,nSteps):
 			u.trajectory[k]
 			# ALIGN THE BETA SHEETS
-			R, rmsd = rotation_matrix(u_beta.coordinates(),pos0)
+			R, rmsd = rotation_matrix(u_beta.positions,pos0)
 			# APPLY THE ROTATION MATRIX TO THE ATOMS OF INTEREST
 			u_all.rotate(R)
 			# CALC THE RMSD VALUE BETWEEN FRAMES
-			rmsd = RMSD(u_sel.coordinates(),pos1,temp_nAtoms)
+			rmsd = RMSD(u_sel.positions,pos1,temp_nAtoms)
 			# PRINT THE RESULTS TO THE OUTPUT FILE
 			out.write('%d   %d    %f \n' %(j,k,rmsd))
 	out.close()

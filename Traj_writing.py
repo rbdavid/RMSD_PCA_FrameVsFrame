@@ -51,7 +51,7 @@ ref_important.translate(-ref_important.center_of_mass())
 ref_important.write('reference_structure.pdb')
 
 ref_atoms = len(ref_important.atoms)
-pos0 = ref_align.coordinates()
+pos0 = ref_align.positions
 
 out1 = open('frames.dat', 'w')
 with MDAnalysis.Writer('%s' %(out), ref_atoms) as W:
@@ -87,7 +87,7 @@ with MDAnalysis.Writer('%s' %(out), ref_atoms) as W:
 					u.trajectory[k]
 					ffprint('Writing frame %d to dcd file' %(k))
 					u_all.translate(-u_sel.center_of_mass())
-					R, rmsd = rotation_matrix(u_align.coordinates(),pos0)
+					R, rmsd = rotation_matrix(u_align.positions,pos0)
 					u_sel.rotate(R)
 					W.write(u_sel)
 					x += 1
