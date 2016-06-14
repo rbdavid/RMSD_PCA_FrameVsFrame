@@ -17,15 +17,15 @@ ref = sys.argv[1]		# full protein reference structure...
 traj_loc = sys.argv[2]		# pointer to the directories of the systems...
 out = sys.argv[3]		# output file name w/ extension
 
-selection = 'backbone'
-alignment = 'name CA and (resid 19:25 or resid 50:55 or resid 90:94 or resid 112:117 or resid 142:149 or resid 165:169 or resid 190:194 or resid 214:218 or resid 236:240 or resid 253:258 or resid 303:307)'
+selection = 'protein'
+alignment = 'protein and name CA and (resid 20:25 or resid 50:55 or resid 73:75 or resid 90:94 or resid 112:116 or resid 142:147 or resid 165:169 or resid 190:194 or resid 214:218 or resid 236:240 or resid 253:258 or resid 303:307)'
 
 grab_frame = 50 	#grab a frame every 50 frames (100 ps);
 
 flush = sys.stdout.flush
 
 sys = []
-sys.append(['AMBER_apo', 51, 100])		#
+sys.append(['AMBER_apo', 21, 150])		#
 #sys.append(['AMBER_atp', 51, 100])		#
 #sys.append(['AMBER_ssrna', 51, 100])		#
 #sys.append(['AMBER_ssrna_atp', 51, 100])	#
